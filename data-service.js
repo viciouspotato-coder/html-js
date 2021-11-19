@@ -159,12 +159,12 @@ function addEmployee(employeeData) {
 function updateEmployee(employeeData) {
     return new Promise(function (resolve, reject) {
         return new Promise(function (resolve, reject) {
-            employeeData.isManager = (employeeData.isManager) ? true : false;
             for (i in employeeData) {
                 if (employeeData[i] == "") {
                     employeeData[i] = null;
                 }
             }
+            employeeData.isManager = (employeeData.isManager) ? true : false;
             resolve();
         }).then(() => {
             Employee.update({
@@ -186,7 +186,7 @@ function updateEmployee(employeeData) {
             }, {
                 where: { employeeNum: employeeData.employeeNum }
             }).then(() => {
-                console.log("successfully updated employee: " + employeeData.employeeNum);
+                console.log(employeeData);
                 resolve()
             }).catch(() => {
                 reject("unable to update employee");
