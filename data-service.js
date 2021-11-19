@@ -3,8 +3,8 @@ const Sequelize = require('sequelize');
 
 var fs = require("fs");
 
-var sequelize = new Sequelize('d64nrdsl25rluv', 'wlrrdhlextwwta', '0b202b79a04fe81e83a16c2e5d7a4af68f413462ffa5fd2dba5cb2d5013922c0', {
-    host: 'ec2-34-203-114-67.compute-1.amazonaws.com',
+var sequelize = new Sequelize('d48muv3hphc1l1', 'aethwxajhjiyly', 'ab164f21b04638a66a6c740a904a9e918f88a57338b861d01376b27100cf42b1', {
+    host: 'ec2-34-224-239-147.compute-1.amazonaws.com',
     dialect: 'postgres',
     port: 5432,
     dialectOptions: {
