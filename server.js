@@ -1,10 +1,10 @@
 /*********************************************************************************
- *  WEB322 – Assignment 5
+ *  WEB322 – Assignment 6
  *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.
  *  No part of this assignment has been copied manually or electronically from any other source
  *  (including web sites) or distributed to other students.
  *
- *  Name: Henry Tao Student ID: 118375203 Date: 11/19/2021
+ *  Name: Henry Tao Student ID: 118375203 Date: 12/02/2021
  *
  *  Online (Heroku) URL: https://fast-depths-37289.herokuapp.com/
  *
@@ -278,8 +278,8 @@ app.post("/images/add", upload.single("imageFile"), ensureLogin, function (req, 
   res.redirect("/images");
 })
 
-app.get("/images", function (req, res) {
-  fs.readdir("./public/images/uploaded", ensureLogin, function (err, files) {
+app.get("/images", ensureLogin, function (req, res) {
+  fs.readdir("./public/images/uploaded", function (err, files) {
     var image = { "images": files };
     res.render("images", image);
   });
