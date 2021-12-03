@@ -136,61 +136,52 @@ function getDepartments() {
 }
 
 function addEmployee(employeeData) {
+    employeeData.isManager = (employeeData.isManager) ? true : false;
+    for (i in employeeData) {
+        if (employeeData[i] == "") {
+            employeeData[i] = null;
+        }
+    }
     return new Promise(function (resolve, reject) {
-        return new Promise(function (resolve, reject) {
-            employeeData.isManager = (employeeData.isManager) ? true : false;
-            for (i in employeeData) {
-                if (employeeData[i] == "") {
-                    employeeData[i] = null;
-                }
-            }
+        Employee.create(employeeData).then(() => {
             resolve();
-        }).then(() => {
-            console.log(employeeData)
-            Employee.create(employeeData).then(() => {
-                resolve();
-            }).catch(() => {
-                reject("unable to create employee");
-            });
+        }).catch(() => {
+            reject("unable to create employee");
         });
     });
 }
 
 function updateEmployee(employeeData) {
-    return new Promise(function (resolve, reject) {
-        return new Promise(function (resolve, reject) {
-            for (i in employeeData) {
-                if (employeeData[i] == "") {
-                    employeeData[i] = null;
-                }
+    employeeData.isManager = (employeeData.isManager) ? true : false;
+    for (let i in employeeData) {
+        if (employeeData[i] == "") {
+            employeeData[i] = null;
+        }
+    }
+    return new Promise((resolve, reject) => {
+        Employee.update({
+            firstName: employeeData.firstName,
+            lastName: employeeData.lastName,
+            email: employeeData.email,
+            SSN: employeeData.SSN,
+            addressStreet: employeeData.addressStreet,
+            addresCity: employeeData.addresCity,
+            addressState: employeeData.addressState,
+            addressPostal: employeeData.addressPostal,
+            maritalStatus: employeeData.maritalStatus,
+            isManager: employeeData.isManager,
+            employeeManagerNum: employeeData.employeeManagerNum,
+            status: employeeData.status,
+            department: employeeData.department,
+            hireDate: employeeData.hireDate
+        }, {
+            where: {
+                employeeNum: employeeData.employeeNum
             }
-            employeeData.isManager = (employeeData.isManager) ? true : false;
-            resolve();
         }).then(() => {
-            Employee.update({
-                employeeNum: employeeData.employeeNum,
-                firstName: employeeData.firstName,
-                lastName: employeeData.lastName,
-                email: employeeData.email,
-                SSN: employeeData.SSN,
-                addressStreet: employeeData.addressStreet,
-                addressCity: employeeData.addressCity,
-                addressState: employeeData.addressState,
-                addressPostal: employeeData.addressPostal,
-                maritalStatus: employeeData.maritalStatus,
-                isManager: employeeData.isManager,
-                employeeManagerNum: employeeData.employeeManagerNum,
-                status: employeeData.status,
-                department: employeeData.department,
-                hireDate: employeeData.hireDate
-            }, {
-                where: { employeeNum: employeeData.employeeNum }
-            }).then(() => {
-                console.log(employeeData);
-                resolve()
-            }).catch(() => {
-                reject("unable to update employee");
-            });
+            resolve();
+        }).catch((err) => {
+            reject("unable to update employee");
         });
     });
 }
@@ -212,7 +203,7 @@ function deleteEmployeeByNum(empNum) {
 function addDepartment(departmentData) {
     return new Promise(function (resolve, reject) {
         if (departmentData.departmentName == "") {
-            departmentData.departmentName = NULL;
+            departmentData.departmentName = null;
         }
         Department.create(departmentData)
             .then((data) => {
@@ -224,14 +215,14 @@ function addDepartment(departmentData) {
 }
 
 function updateDepartment(departmentData) {
-    return new Promise(function (resolve, reject) {
-        for (const i in departmentData) {
-            if (i == "") {
-                i = NULL;
-            }
+    for (let i in departmentData) {
+        if (departmentData[i] == "") {
+            departmentData[i] = null;
         }
+    }
+    return new Promise(function (resolve, reject) {
+        console.log(departmentData.departmentId)
         Department.update({
-            departmentId: departmentData.departmentId,
             departmentName: departmentData.departmentName
         }, {
             where: { departmentId: departmentData.departmentId }

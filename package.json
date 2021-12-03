@@ -9,10 +9,13 @@
   "author": "Henry Tao",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "client-sessions": "^0.8.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "handlebars": "^4.7.7",
     "handlebars-helper-equal": "^1.0.0",
+    "mongoose": "^6.0.14",
     "multer": "^1.4.3",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",

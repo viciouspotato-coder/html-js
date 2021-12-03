@@ -1,11 +1,20 @@
 <div class="row">
   <div class="col-md-12">
-    <h2>{{ result.departmentName}} - Department: {{result.departmentId}}</h2>
+    <h2>
+      {{ result.departmentName}} - Department: {{result.departmentId}}
+    </h2>
     <hr />
-    <form method="post" action="/deparment/update">
+    <form method="post" action="/department/update">
       <fieldset>
         <div class="col-md-12">
           <div class="form-group">
+            <input
+                class="form-control"
+                id="departmentId"
+                name="departmentId"
+                type="hidden"
+                value="{{result.departmentId}}"
+              />
             <label for="departmentName">Department Name</label>
             <input
               class="form-control"
